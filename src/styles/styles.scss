@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.current {
+  border-bottom: 3px solid #28a5ff;
+  border-radius: 1px;
+}
+// Filters
+
+.filters {
+  height: 100px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .filters__item {
+    width: 134px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666666;
+  }
+}
+
+.btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+// TABLE
+
+.buyPrice {
+  position: relative;
+  .buyPrice_proc {
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 130px;
+    top: 19px;
+  }
+}
+.footer {
+  width: 100%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+@import './tables/bestFundTable';
+@import 'aboutFund';
+@import 'navbar';
+@import 'card';
+@import 'rating';
+@import 'performance';

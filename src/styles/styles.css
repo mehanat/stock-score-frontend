@@ -1,0 +1,509 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.current {
+  border-bottom: 3px solid #28a5ff;
+  border-radius: 1px;
+}
+
+.filters {
+  height: 100px;
+  margin: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.filters .filters__item {
+  width: 134px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #666666;
+}
+
+.btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.buyPrice {
+  position: relative;
+}
+
+.buyPrice .buyPrice_proc {
+  width: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: absolute;
+  left: 130px;
+  top: 19px;
+}
+
+.footer {
+  width: 100%;
+  margin: 20px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.table {
+  width: 100%;
+}
+
+.table__header {
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 18px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #f1f1f1;
+  color: #47494b;
+  font-weight: 700;
+}
+
+.table__header_item {
+  font-size: 16px;
+}
+
+.card__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rating {
+  width: 100px;
+}
+
+.rating .rating__body {
+  width: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.rating:hover {
+  cursor: pointer !important;
+}
+
+.headFund {
+  width: 250px;
+  line-height: 15px;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.headFund p {
+  margin-top: -10px;
+  font-weight: 500;
+}
+
+.headFund .fundName {
+  color: #6e6893;
+}
+
+.headFund__body {
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.headFund__body span {
+  height: 40%;
+  overflow: hidden;
+}
+
+.asset {
+  width: 200px;
+}
+
+.pref {
+  width: 160px;
+}
+
+.holding {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 190px;
+}
+
+.mainSector {
+  width: 190px;
+}
+
+.mainSector img {
+  margin-right: 10px;
+}
+
+.mainSector .mainSectorCard {
+  width: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mainSector .mainSector__left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.mainSector .mainSector__right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.lastReport {
+  width: 100px;
+}
+
+.about__fundOwner_state {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.about__fundOwner_state .rating__state {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.fund__headName h1 {
+  margin-bottom: -1px;
+}
+
+.about__fundOwner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.about__fundOwner .about__fundOwner_photo {
+  margin-right: 20px;
+}
+
+.rating__body {
+  border-radius: 5px;
+  padding: 4px;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.navbar {
+  height: 100px;
+  margin-bottom: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar .navbar__list {
+  width: 667px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.navbar .navbar__list .navbar__list_item {
+  font-size: 20px;
+}
+
+.navbar .navbar__list .navbar__list_item:hover {
+  cursor: pointer;
+  color: #6171ff;
+}
+
+.subNavbar {
+  width: 700px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 10px 0;
+}
+
+.subNavbar__item {
+  font-size: 14px;
+}
+
+.subNavbar__item:hover {
+  cursor: pointer;
+  color: #e00000;
+}
+
+.fund_subNavbar {
+  width: 700px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 40px;
+}
+
+.card__body {
+  width: 100%;
+  height: 64px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #25213b;
+  border-bottom: #e0e0e0 1px solid;
+}
+
+.card__body:hover {
+  cursor: pointer;
+  background-color: #726f6f38;
+}
+
+.security {
+  width: 130px;
+}
+
+.security p {
+  color: #6e6893;
+}
+
+.security img {
+  margin-right: 10px;
+}
+
+.security .securityBox {
+  width: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.security .securityBox .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 40px;
+}
+
+.security .securityBox .name span {
+  height: 50%;
+  overflow: hidden;
+}
+
+.security .securityBox .securityBox__left {
+  width: 50%;
+}
+
+.security .securityBox .securityBox__right {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.portfolio {
+  width: 230px;
+}
+
+.marketValue {
+  width: 180px;
+}
+
+.action {
+  width: 180px;
+}
+
+.buyPrice {
+  width: 170px;
+  text-align: center;
+}
+
+.currPrice {
+  width: 170px;
+}
+
+.sector {
+  width: 100px;
+  text-align: center;
+}
+
+.actionCard__block .green_title {
+  color: #169202;
+}
+
+.actionCard__block .red_title {
+  color: #df2121;
+}
+
+.actionCard__block .noChange {
+  color: #6a6767;
+}
+
+.green {
+  background-color: #00b007;
+}
+
+.green-1 {
+  background-color: #00d108;
+}
+
+.green-2 {
+  background-color: #06eb0f;
+}
+
+.green-3 {
+  background-color: #45f54c;
+}
+
+.green-4 {
+  background-color: #a2f8a5;
+}
+
+.pink {
+  background-color: #ffc7c7;
+}
+
+.pink-1 {
+  background-color: #ffb6b6;
+}
+
+.pink-2 {
+  background-color: #fe7575;
+}
+
+.red {
+  background-color: #eb2121;
+}
+
+.performance__history {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.performance__history h2 {
+  font-weight: 700;
+}
+
+.history__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.history__items .history__item {
+  padding: 15px 5px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3595ee2d), color-stop(50%, rgba(53, 149, 238, 0.021)));
+  background: linear-gradient(180deg, #3595ee2d 0%, rgba(53, 149, 238, 0.021) 50%);
+  border-radius: 3px;
+  color: #434343;
+  font-weight: 500;
+}
+/*# sourceMappingURL=styles.css.map */

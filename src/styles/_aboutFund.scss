@@ -1,0 +1,28 @@
+.about__fundOwner_state {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .rating__state {
+    display: flex;
+    align-items: center;
+  }
+}
+.fund__headName {
+  h1 {
+    margin-bottom: -1px;
+  }
+}
+.about__fundOwner {
+  display: flex;
+  .about__fundOwner_photo {
+    margin-right: 20px;
+  }
+}
+.rating__body {
+  border-radius: 5px;
+  padding: 4px;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 400;
+}

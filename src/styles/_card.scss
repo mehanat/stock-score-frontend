@@ -1,0 +1,77 @@
+.card__body {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  color: #25213b;
+  border-bottom: #e0e0e0 1px solid;
+  &:hover {
+    cursor: pointer;
+    background-color: #726f6f38;
+  }
+}
+.security {
+  width: 130px;
+  p {
+    color: #6e6893;
+  }
+  img {
+    margin-right: 10px;
+  }
+  .securityBox {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .name {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 40px;
+      span {
+        height: 50%;
+        overflow: hidden;
+      }
+    }
+    .securityBox__left {
+      width: 50%;
+    }
+    .securityBox__right {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+}
+
+.portfolio {
+  width: 230px;
+}
+.marketValue {
+  width: 180px;
+}
+.action {
+  width: 180px;
+}
+.buyPrice {
+  width: 170px;
+  text-align: center;
+}
+.currPrice {
+  width: 170px;
+}
+.sector {
+  width: 100px;
+  text-align: center;
+}
+.actionCard__block {
+  .green_title {
+    color: #169202;
+  }
+  .red_title {
+    color: #df2121;
+  }
+  .noChange {
+    color: #6a6767;
+  }
+}

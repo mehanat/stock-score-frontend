@@ -1,0 +1,39 @@
+.navbar {
+  height: 100px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .navbar__list {
+    width: 667px;
+    display: flex;
+    justify-content: space-between;
+    .navbar__list_item {
+      font-size: 20px;
+      &:hover {
+        cursor: pointer;
+        color: #6171ff;
+      }
+    }
+  }
+}
+
+.subNavbar {
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.subNavbar__item {
+  font-size: 14px;
+  &:hover {
+    cursor: pointer;
+    color: #e00000;
+  }
+}
+.fund_subNavbar {
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}

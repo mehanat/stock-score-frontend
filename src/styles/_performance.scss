@@ -1,0 +1,18 @@
+.performance__history {
+  width: 100%;
+  margin: 20px 0;
+  h2 {
+    font-weight: 700;
+  }
+}
+.history__items {
+  display: flex;
+  justify-content: space-between;
+  .history__item {
+    padding: 15px 5px;
+    background: linear-gradient(180deg, #3595ee2d 0%, rgba(53, 149, 238, 0.021) 50%);
+    border-radius: 3px;
+    color: #434343;
+    font-weight: 500;
+  }
+}
