@@ -39,6 +39,16 @@ const getShares = async () => {
     console.log(error.response);
   }
 };
+
+const getAvailableQuartalsForReport = async (cik) => {
+  try {
+    const {data} = await axios(`${process.env.REACT_APP_API}/funds/${cik}/available-dates`);
+    return data;
+  } catch (error) {
+    console.log(error.response);
+  }
+};
+
 const getReport = async (cik) => {
   try {
     if (cik.length > 2) {
@@ -115,6 +125,7 @@ const getPerformance = async () => {
 export default {
   getFund,
   getAboutFund,
+  getAvailableQuartalsForReport,
   getSecurity,
   getSecurityValue,
   getShares,

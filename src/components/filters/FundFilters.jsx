@@ -25,6 +25,7 @@ const FundFilters = ({latestReport}) => {
   const [securityValueOption, setSecurityValueOption] = useState({});
   const [sectorsValue, setSectorsValue] = useState('');
   const [sharesValue, setSharesValue] = useState([]);
+  const [availableQuartals, setAvailableQuartals] = useState([]);
   const [reportOption, setReportOption] = useState('');
   const [portflioOrder, setPortflioOrder] = useState(false);
   const [marketOrder, setMarketOrder] = useState(false);
@@ -132,6 +133,14 @@ const FundFilters = ({latestReport}) => {
       .catch((res) => {
         console.log(res);
       });
+    funds
+        .getAvailableQuartalsForReport(latestReport.cik)
+        .then((res) => {
+          setAvailableQuartals(res);
+        })
+        .catch((res) => {
+          console.log(res);
+        });
   }, []);
 
   const serachSecurity = (e) => {
@@ -239,13 +248,21 @@ const FundFilters = ({latestReport}) => {
         </div>
         <div className="filters__item">
           <p>Report date</p>
-          <AutoComplete
-            onSearch={serachReport}
-            style={{width: '150px'}}
-            options={reportOption}
-            mode="multiple"
-            onChange={(e) => setReport(e)}
-          />
+          <Select
+              style={{width: '150px'}}
+              placeholder="Choose period"
+              defaultValue={`${latestReport.quartal}Q${latestReport.year}`}
+              onChange={(e) => {}}
+          >
+            {availableQuartals &&
+            availableQuartals.map((el, index) => (
+                <>
+                  <Option key={index} value={`${el.quartal}Q${el.year}`}>
+                    {el.quartal}Q{el.year}
+                  </Option>
+                </>
+            ))}
+          </Select>
         </div>
       </div>
       <div className="btn">
