@@ -10,7 +10,7 @@ import Footer from '../navigation/Footer';
 import {ACTIONS} from '../../redux/actionType';
 const {Option} = Select;
 
-const FundFilters = () => {
+const FundFilters = ({latestReport}) => {
   const dispatch = useDispatch();
   const {id} = useParams();
   const [fund, setFund] = useState({});
@@ -32,11 +32,9 @@ const FundFilters = () => {
   const [total, setTotal] = useState(1);
 
   const fetchFund = () => {
-    console.log('fetchFund', fund)
-    console.log('report', report)
     funds
       .applyFilter(
-        fund.cik,
+        latestReport.cik,
         portflioOrder,
         marketOrder,
         security,
@@ -46,11 +44,12 @@ const FundFilters = () => {
         shares,
         securityValue[0],
         securityValue[1],
-        report[1],
-        report[0],
+        report[1] ? report[1] : latestReport.year,
+        report[0] ? report[0] : latestReport.quartal,
         page
       )
       .then((res) => {
+        console.log('applyFilter', res)
         dispatch({type: ACTIONS.GET_ALL_HOLDINGS, payload: res.entries});
       })
       .catch((res) => {
@@ -58,7 +57,8 @@ const FundFilters = () => {
       });
   };
 
-  const getFund = useCallback((id) => {
+  // todo нужно ли это если есть latestReport ?
+  /*const getFund = useCallback((id) => {
     funds
       .getFund(id)
       .then((res) => {
@@ -90,14 +90,15 @@ const FundFilters = () => {
   useEffect(() => {
     getFund(id);
     getAbout(id);
-  }, [id]);
+  }, [id]);*/
 
   useEffect(() => {
+    console.log('latestReport', latestReport)
     funds
-      .firstFetchedFund(fund.cik, aboutFund.quartal, aboutFund.year)
+      .firstFetchedFund(latestReport.cik, latestReport.quartal, latestReport.year)
       .then((res) => {
-        dispatch({type: ACTIONS.GET_ALL_HOLDINGS, payload: res.entries});
-        setTotal(res.total);
+        dispatch({type: ACTIONS.GET_ALL_HOLDINGS, payload: res?.entries});
+        setTotal(res?.total);
       })
       .catch((res) => {
         console.log(res);

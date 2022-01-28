@@ -72,12 +72,11 @@ const applyFilter = async (
   quartal,
   page
 ) => {
-  console.log('applyFilter')
   try {
     valueOrder = valueOrder ? 'ASC' : 'DESC';
     percOnPortfolioOrder = percOnPortfolioOrder ? 'ASC' : 'DESC';
     const {data} = await axios.post(
-      `${process.env.REACT_APP_API}/shares${cik ? `?` : ''}${cik ? `cik=${cik}` : ''}${
+      `${process.env.REACT_APP_API}/shares?${cik ? `cik=${cik}` : ''}${
         percOnPortfolioOrder ? `&percOnPortfolioOrder=${percOnPortfolioOrder}` : ''
       }${cusip ? `&cusip=${cusip}` : ''}${
         percOnPortfolioMin ? `&percOnPortfolioMin=${percOnPortfolioMin}` : ''
@@ -92,7 +91,7 @@ const applyFilter = async (
     );
     return data;
   } catch (error) {
-    console.log(error.response.data);
+    console.log('applyFilter', error.response.data);
   }
 };
 
@@ -104,7 +103,7 @@ const firstFetchedFund = async (cik, quartal, year) => {
     );
     return data;
   } catch (error) {
-    console.log(error.response);
+    console.log('firstFetchedFund', error.response);
   }
 };
 
