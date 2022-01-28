@@ -25,7 +25,7 @@ const PerformanceCard = ({yearGain, years3Gain, years5Gain, allTimeGain}) => {
 
   return (
     <>
-      <Select onChange={setValue} placeholder="1 year">
+      <Select onChange={setValue} placeholder="1 year" bordered={false}>
         <Option value={1}>1year</Option>
         <Option value={3}>3year</Option>
         <Option value={5}>5year</Option>

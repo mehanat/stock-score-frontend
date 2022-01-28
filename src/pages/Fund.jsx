@@ -64,7 +64,7 @@ const Fund = () => {
             </div>
             <div className="about__fundOwner">
               <div className="about__fundOwner_photo">
-                <img src={fund.headPhoto ? fund.headPhoto : ''} alt="" width="100"/>
+                <img src={fund.headPhoto ? fund.headPhoto : ''} alt="" height="150"/>
               </div>
               <div className="about__fundOwner_bio">
                 <p>{fund.description}</p>
