@@ -20,7 +20,8 @@ const FundFilters = ({latestReport}) => {
   const [sectors, setSectors] = useState();
   const [securityValue, setSecurityValue] = useState([]);
   const [shares, setShares] = useState('');
-  const [report, setReport] = useState('');
+  const [report, setReport] = useState(latestReport);
+  const [reportPeriod, setReportPeriod] = useState(`${latestReport.quartal}Q${latestReport.year}`);
   const [securityOption, setSecurityOption] = useState([]);
   const [securityValueOption, setSecurityValueOption] = useState({});
   const [sectorsValue, setSectorsValue] = useState('');
@@ -35,7 +36,7 @@ const FundFilters = ({latestReport}) => {
   const fetchFund = () => {
     funds
       .applyFilter(
-        latestReport.cik,
+          report.cik,
         portflioOrder,
         marketOrder,
         security,
@@ -45,8 +46,8 @@ const FundFilters = ({latestReport}) => {
         shares,
         securityValue[0],
         securityValue[1],
-        report[1] ? report[1] : latestReport.year,
-        report[0] ? report[0] : latestReport.quartal,
+        report[1] ? report[1] : report.year,
+        report[0] ? report[0] : report.quartal,
         page
       )
       .then((res) => {
@@ -96,7 +97,7 @@ const FundFilters = ({latestReport}) => {
   useEffect(() => {
     console.log('latestReport', latestReport)
     funds
-      .firstFetchedFund(latestReport.cik, latestReport.quartal, latestReport.year)
+      .firstFetchedFund(report.cik, report.quartal, report.year)
       .then((res) => {
         dispatch({type: ACTIONS.GET_ALL_HOLDINGS, payload: res?.entries});
         setTotal(res?.total);
@@ -134,7 +135,7 @@ const FundFilters = ({latestReport}) => {
         console.log(res);
       });
     funds
-        .getAvailableQuartalsForReport(latestReport.cik)
+        .getAvailableQuartalsForReport(report.cik)
         .then((res) => {
           setAvailableQuartals(res);
         })
@@ -251,8 +252,11 @@ const FundFilters = ({latestReport}) => {
           <Select
               style={{width: '150px'}}
               placeholder="Choose period"
-              defaultValue={`${latestReport.quartal}Q${latestReport.year}`}
-              onChange={(e) => {}}
+              defaultValue={reportPeriod}
+              onChange={(e) => {
+                console.log('setReportPeriod', e)
+                setReportPeriod(e)
+              }}
           >
             {availableQuartals &&
             availableQuartals.map((el, index) => (
