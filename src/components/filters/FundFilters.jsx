@@ -10,17 +10,16 @@ import Footer from '../navigation/Footer';
 import {ACTIONS} from '../../redux/actionType';
 const {Option} = Select;
 
-const FundFilters = ({latestReport}) => {
+const FundFilters = ({latestReport, setAboutFund}) => {
   const dispatch = useDispatch();
   const {id} = useParams();
   const [fund, setFund] = useState({});
-  const [aboutFund, setAboutFund] = useState({});
+  //const [aboutFund, setAboutFund] = useState({});
   const [security, setSecurity] = useState('');
   const [portfolio, setPortfolio] = useState([]);
   const [sectors, setSectors] = useState();
   const [securityValue, setSecurityValue] = useState([]);
   const [shares, setShares] = useState('');
-  const [report, setReport] = useState(latestReport);
   const [reportPeriod, setReportPeriod] = useState(`${latestReport.quartal}Q${latestReport.year}`);
   const [securityOption, setSecurityOption] = useState([]);
   const [securityValueOption, setSecurityValueOption] = useState({});
@@ -33,10 +32,12 @@ const FundFilters = ({latestReport}) => {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(1);
 
+
   const fetchFund = () => {
+    console.log('fetchFund', latestReport)
     funds
       .applyFilter(
-          report.cik,
+          latestReport.cik,
         portflioOrder,
         marketOrder,
         security,
@@ -46,8 +47,8 @@ const FundFilters = ({latestReport}) => {
         shares,
         securityValue[0],
         securityValue[1],
-        report[1] ? report[1] : report.year,
-        report[0] ? report[0] : report.quartal,
+        latestReport.year,
+        latestReport.quartal,
         page
       )
       .then((res) => {
@@ -58,6 +59,19 @@ const FundFilters = ({latestReport}) => {
         console.log(res);
       });
   };
+
+  const fetchFundReport = (period) => {
+    console.log('fetchFundReport', period)
+    funds.
+    getFundReport(latestReport.cik, period)
+        .then((res) => {
+          console.log('fetchFundReport', res)
+            setAboutFund(res);
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+  }
 
   // todo нужно ли это если есть latestReport ?
   /*const getFund = useCallback((id) => {
@@ -95,9 +109,8 @@ const FundFilters = ({latestReport}) => {
   }, [id]);*/
 
   useEffect(() => {
-    console.log('latestReport', latestReport)
     funds
-      .firstFetchedFund(report.cik, report.quartal, report.year)
+      .firstFetchedFund(latestReport.cik, latestReport.quartal, latestReport.year)
       .then((res) => {
         dispatch({type: ACTIONS.GET_ALL_HOLDINGS, payload: res?.entries});
         setTotal(res?.total);
@@ -105,7 +118,7 @@ const FundFilters = ({latestReport}) => {
       .catch((res) => {
         console.log(res);
       });
-  }, [aboutFund]);
+  }, [latestReport]);
 
   useEffect(() => {
     funds
@@ -135,7 +148,7 @@ const FundFilters = ({latestReport}) => {
         console.log(res);
       });
     funds
-        .getAvailableQuartalsForReport(report.cik)
+        .getAvailableQuartalsForReport(latestReport.cik)
         .then((res) => {
           setAvailableQuartals(res);
         })
@@ -155,20 +168,10 @@ const FundFilters = ({latestReport}) => {
       });
   };
 
-  const serachReport = (e) => {
-    funds
-      .getReport(e)
-      .then((res) => {
-        setReportOption(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
-  };
-
   useEffect(() => {
     fetchFund();
-  }, [page, portflioOrder, marketOrder]);
+  }, [page, portflioOrder, marketOrder, latestReport]);
+
 
   return (
     <div>
@@ -249,15 +252,18 @@ const FundFilters = ({latestReport}) => {
         </div>
         <div className="filters__item">
           <p>Report date</p>
-          <Select
-              style={{width: '150px'}}
-              placeholder="Choose period"
-              defaultValue={reportPeriod}
-              onChange={(e) => {
-                console.log('setReportPeriod', e)
-                setReportPeriod(e)
-              }}
-          >
+            <Select
+                style={{width: '150px'}}
+                placeholder="Choose period"
+                defaultValue={reportPeriod}
+                onChange={(e) => {
+                    console.log('setReportPeriod', e)
+                    //setReportPeriod(e)
+                    if (e) {
+                        fetchFundReport(e);
+                    }
+                }}
+            >
             {availableQuartals &&
             availableQuartals.map((el, index) => (
                 <>

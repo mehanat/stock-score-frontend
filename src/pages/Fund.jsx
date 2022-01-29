@@ -47,11 +47,11 @@ const Fund = () => {
     const changePage = (pageSubNavbar) => {
       switch (pageSubNavbar) {
         case 'Holdings':
-          return <FundFilters latestReport={aboutFund} />;
+          return <FundFilters latestReport={aboutFund} setAboutFund = {setAboutFund} />;
         case 'Performance':
           return <Performance aboutFund={aboutFund} />;
         default:
-          return <FundFilters latestReport={aboutFund} />;
+          return <FundFilters latestReport={aboutFund} setAboutFund = {setAboutFund} />;
       }
     };
 

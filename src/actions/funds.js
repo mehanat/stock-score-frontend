@@ -8,6 +8,12 @@ const getAboutFund = async (cik) => {
   const {data} = await axios(`${process.env.REACT_APP_API}/funds/${cik}/last-report`);
   return data;
 };
+
+const getFundReport = async (cik, period) => {
+  const {data} = await axios(`${process.env.REACT_APP_API}/funds/${cik}/quartal-report?period=${period}`);
+  return data;
+};
+
 const getSecurity = async (q) => {
   if (q.length > 2) {
     const {data} = await axios(`${process.env.REACT_APP_API}/shares/search?searchStr=${q}`);
@@ -125,6 +131,7 @@ const getPerformance = async () => {
 export default {
   getFund,
   getAboutFund,
+  getFundReport,
   getAvailableQuartalsForReport,
   getSecurity,
   getSecurityValue,

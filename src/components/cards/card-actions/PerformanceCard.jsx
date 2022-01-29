@@ -31,7 +31,7 @@ const PerformanceCard = ({yearGain, years3Gain, years5Gain, allTimeGain}) => {
         <Option value={5}>5year</Option>
         <Option value={'allTime'}>all time</Option>
       </Select>
-      {yearGain ? `${countProcent(perf)}%` : ''}
+      <span style={ {'color': perf > 0 ? 'green' : 'red' }}>{yearGain ? `${countProcent(perf)}%` : ''}</span>
     </>
   );
 };

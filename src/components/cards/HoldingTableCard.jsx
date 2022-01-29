@@ -30,16 +30,17 @@ const HoldingTableCard = ({card}) => {
         />
       </td>
       <td className="buyPrice card__item">
-        ${card.buyPrice}
-        <BuyPrice
-          className="buyPrice_proc"
-          title={card.changeType.title}
-          actualPrice={card.shares.actualPrice}
-          buyPrice={card.buyPrice}
-        />
+          ${card.buyPrice}
+
       </td>
-      <td className="currPrice card__item">${card.shares.actualPrice}</td>
-      <td className="sector card__item">{card.shares.sector ? card.shares.sector.name : '-'}</td>
+        <td><BuyPrice
+            className="buyPrice_proc"
+            title={card.changeType.title}
+            actualPrice={card.shares.actualPrice}
+            buyPrice={card.buyPrice}
+        /></td>
+        <td className="currPrice card__item">${card.shares.actualPrice}</td>
+        <td className="sector card__item">{card.shares.sector ? card.shares.sector.name : '-'}</td>
     </tr>
   );
 };
