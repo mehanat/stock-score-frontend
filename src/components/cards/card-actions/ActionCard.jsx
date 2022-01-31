@@ -12,9 +12,9 @@ const ActionCard = ({title, increaseAbsolute, increasePercentage}) => {
     sign = '+';
   }
   if (increaseAbsolute > 500000) {
-    increaseAbsolute = `${increaseAbsolute / 1000000} mln`;
+    increaseAbsolute = `${(increaseAbsolute / 1000000).toFixed(1)} mln`;
   } else if (increaseAbsolute < 500000) {
-    increaseAbsolute = increaseAbsolute / 1000;
+    increaseAbsolute = `${(increaseAbsolute / 1000).toFixed(1)} k`;
   }
 
   if (title === 'No change') {
@@ -26,7 +26,7 @@ const ActionCard = ({title, increaseAbsolute, increasePercentage}) => {
       <div className="actionCard__block_title">
         <span className={`${color} title`}>{title}</span>{' '}
         {increasePercentage ? (
-          <span className={color}>{increasePercentage.toFixed(2)} %</span>
+          <span className={color}>{(increasePercentage * 100).toFixed(1)} %</span>
         ) : null}
       </div>
       <div className={`${color} actionCard__block absolute`}>
