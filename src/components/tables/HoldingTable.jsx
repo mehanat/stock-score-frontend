@@ -1,8 +1,23 @@
 import {useSelector} from 'react-redux';
 import HoldingTableCard from '../cards/HoldingTableCard';
 
-const HoldingTable = ({portflioOrder, setPortflioOrder, markerOrder, setMarketOrder}) => {
+const HoldingTable = ({sortOrder, setSortOrder, sortColumn, setSortColumn}) => {
   const holdings = useSelector((state) => state.holdings.holdings);
+
+  const changeSortVal = (curSortOrder, curSortColumn, columnClicked) => {
+    if (curSortOrder === 'ASC') {
+      if (curSortColumn === columnClicked) {
+        setSortOrder('DESC')
+      } else {
+        setSortColumn(columnClicked)
+      }
+    } else {
+      setSortOrder('ASC')
+      if (curSortOrder !== columnClicked) {
+        setSortColumn(columnClicked)
+      }
+    }
+  }
 
   return (
     <>
@@ -12,22 +27,22 @@ const HoldingTable = ({portflioOrder, setPortflioOrder, markerOrder, setMarketOr
             <th className="security table__header_item">Security</th>
             <th
               className="portfolio table__header_item"
-              onClick={() => setPortflioOrder(!portflioOrder)}
+              onClick={() => changeSortVal(sortOrder, sortColumn, 'percOnPortfolioOrder')}
             >
               % Of Portfolio{' '}
               <img
-                src={portflioOrder ? '/images/arrow-down.png' : '/images/arrow-up.png'}
+                src={sortColumn === 'percOnPortfolioOrder' ? (sortOrder === 'DESC' ? '/images/arrow-down.png' : '/images/arrow-up.png') : ''}
                 alt=""
                 width={20}
               />
             </th>
             <th
               className="marketValue table__header_item"
-              onClick={() => setMarketOrder(!markerOrder)}
+              onClick={() => changeSortVal(sortOrder, sortColumn, 'valueOrder')}
             >
               Market Value
               <img
-                src={markerOrder ? '/images/arrow-down.png' : '/images/arrow-up.png'}
+                src={sortColumn === 'valueOrder' ? (sortOrder === 'DESC' ? '/images/arrow-down.png' : '/images/arrow-up.png') : ''}
                 alt=""
                 width={20}
               />

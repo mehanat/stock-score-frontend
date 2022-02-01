@@ -10,7 +10,7 @@ import Footer from '../navigation/Footer';
 import {ACTIONS} from '../../redux/actionType';
 const {Option} = Select;
 
-const FundFilters = ({latestReport, setAboutFund}) => {
+const FundFilters = ({latestReport}) => {
   const dispatch = useDispatch();
   const {id} = useParams();
   const [fund, setFund] = useState({});
@@ -27,8 +27,8 @@ const FundFilters = ({latestReport, setAboutFund}) => {
   const [sharesValue, setSharesValue] = useState([]);
   const [availableQuartals, setAvailableQuartals] = useState([]);
   const [reportOption, setReportOption] = useState('');
-  const [portflioOrder, setPortflioOrder] = useState(false);
-  const [marketOrder, setMarketOrder] = useState(false);
+  const [sortOrder, setSortOrder] = useState('ASC');
+  const [sortColumn, setSortColumn] = useState();
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(1);
 
@@ -38,8 +38,8 @@ const FundFilters = ({latestReport, setAboutFund}) => {
     funds
       .applyFilter(
           latestReport.cik,
-        portflioOrder,
-        marketOrder,
+        sortOrder,
+        sortColumn,
         security,
         portfolio[0],
         portfolio[1],
@@ -47,8 +47,7 @@ const FundFilters = ({latestReport, setAboutFund}) => {
         shares,
         securityValue[0],
         securityValue[1],
-        latestReport.year,
-        latestReport.quartal,
+        reportPeriod,
         page
       )
       .then((res) => {
@@ -59,54 +58,6 @@ const FundFilters = ({latestReport, setAboutFund}) => {
         console.log(res);
       });
   };
-
-  const fetchFundReport = (period) => {
-    console.log('fetchFundReport', period)
-    funds.
-    getFundReport(latestReport.cik, period)
-        .then((res) => {
-          console.log('fetchFundReport', res)
-            setAboutFund(res);
-        })
-        .catch((res) => {
-          console.log(res);
-        });
-  }
-
-  // todo нужно ли это если есть latestReport ?
-  /*const getFund = useCallback((id) => {
-    funds
-      .getFund(id)
-      .then((res) => {
-        setFund(res);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  }, []);
-
-  const getAbout = useCallback((id) => {
-    funds
-      .getAboutFund(id)
-      .then((res) => {
-        setAboutFund(res);
-        const op = [
-          {
-            label: `${res.quartal}Q${res.year}`,
-            value: [res.quartal, res.year],
-          },
-        ];
-        setReportOption(op);
-      })
-      .catch((res) => {
-        console.log(res.response);
-      });
-  }, []);
-
-  useEffect(() => {
-    getFund(id);
-    getAbout(id);
-  }, [id]);*/
 
   useEffect(() => {
     funds
@@ -170,7 +121,7 @@ const FundFilters = ({latestReport, setAboutFund}) => {
 
   useEffect(() => {
     fetchFund();
-  }, [page, portflioOrder, marketOrder, latestReport]);
+  }, [page, sortOrder, sortColumn, reportPeriod]);
 
 
   return (
@@ -260,7 +211,7 @@ const FundFilters = ({latestReport, setAboutFund}) => {
                     console.log('setReportPeriod', e)
                     //setReportPeriod(e)
                     if (e) {
-                        fetchFundReport(e);
+                        setReportPeriod(e);
                     }
                 }}
             >
@@ -281,10 +232,10 @@ const FundFilters = ({latestReport, setAboutFund}) => {
         </Button>
       </div>
       <HoldingTable
-        portflioOrder={portflioOrder}
-        setPortflioOrder={setPortflioOrder}
-        markerOrder={marketOrder}
-        setMarketOrder={setMarketOrder}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+        sortColumn={sortColumn}
+        setSortColumn={setSortColumn}
       />
       <div className="footer">
         <Footer current={page} total={total} setPage={setPage} />

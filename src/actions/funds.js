@@ -75,8 +75,8 @@ const getReport = async (cik) => {
 };
 const applyFilter = async (
   cik,
-  percOnPortfolioOrder,
-  valueOrder,
+  sortOrder,
+  orderColumn,
   cusip,
   percOnPortfolioMin,
   percOnPortfolioMax,
@@ -84,25 +84,21 @@ const applyFilter = async (
   changeType,
   valueMin,
   valueMax,
-  year,
-  quartal,
+  period,
   page
 ) => {
   try {
-    valueOrder = valueOrder ? 'ASC' : 'DESC';
-    percOnPortfolioOrder = percOnPortfolioOrder ? 'ASC' : 'DESC';
     const {data} = await axios.post(
-      `${process.env.REACT_APP_API}/shares?${cik ? `cik=${cik}` : ''}${
-        percOnPortfolioOrder ? `&percOnPortfolioOrder=${percOnPortfolioOrder}` : ''
+      `${process.env.REACT_APP_API}/shares?${cik ? `cik=${cik}` : ''}
+      ${
+          orderColumn ? `&${orderColumn}=${sortOrder}` : ''
       }${cusip ? `&cusip=${cusip}` : ''}${
         percOnPortfolioMin ? `&percOnPortfolioMin=${percOnPortfolioMin}` : ''
       }${percOnPortfolioMax ? `&percOnPortfolioMax=${percOnPortfolioMax}` : ''}${
         valueMin ? `&valueMin=${valueMin}` : ''
       }${valueMax ? `&valueMax=${valueMax}` : ''}${sectorId ? `&sectorId=${sectorId}` : ''}${
         changeType ? `&changeType=${changeType}` : ''
-      }${quartal ? `&quartal=${quartal}` : ''}${year ? `&year=${year}` : ''}${
-        valueOrder ? `&valueOrder=${valueOrder}` : ''
-      }`,
+      }${period ? `&period=${period}` : ''}`,
       {page: page, pageSize: 10}
     );
     return data;

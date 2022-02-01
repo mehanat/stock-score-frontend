@@ -11,12 +11,14 @@ const ActionCard = ({title, increaseAbsolute, increasePercentage}) => {
     color = 'green_title';
     sign = '+';
   }
-  if (Math.abs(increaseAbsolute) > 500000) {
-    increaseAbsolute = `${(increaseAbsolute / 1000000).toFixed(1)} mln`;
-  } else if (Math.abs(increaseAbsolute) > 10000) {
-    increaseAbsolute = `${(increaseAbsolute / 1000).toFixed(1)} k`;
-  } else {
-    increaseAbsolute = `${(increaseAbsolute).toFixed(1)} k`;
+  if (increaseAbsolute) {
+    if (Math.abs(increaseAbsolute) > 500000) {
+      increaseAbsolute = `${(increaseAbsolute / 1000000).toFixed(1)} mln`;
+    } else if (Math.abs(increaseAbsolute) > 10000) {
+      increaseAbsolute = `${(increaseAbsolute / 1000).toFixed(1)} k`;
+    } else {
+      increaseAbsolute = `${(increaseAbsolute).toFixed(1)} k`;
+    }
   }
 
   if (title === 'No change') {
@@ -33,7 +35,7 @@ const ActionCard = ({title, increaseAbsolute, increasePercentage}) => {
       </div>
       <div className={`${color} actionCard__block absolute`}>
         {sign}
-        {increaseAbsolute} shares
+        ${increaseAbsolute}
       </div>
     </div>
   );
