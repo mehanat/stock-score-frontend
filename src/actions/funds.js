@@ -119,8 +119,8 @@ const firstFetchedFund = async (cik, quartal, year) => {
   }
 };
 
-const getPerformance = async () => {
-  const {data} = await axios(`${process.env.REACT_APP_API}/shares/sp500`);
+const getPerformance = async (cik) => {
+  const {data} = await axios(`${process.env.REACT_APP_API}/funds/${cik}/history`);
   return data;
 };
 

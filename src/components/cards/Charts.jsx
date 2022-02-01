@@ -1,9 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Chart from '../charts/Chart';
 
-const Charts = ({history, sp, name}) => {
+const Charts = ({history, name}) => {
   const [chartData, setChartData] = useState([]);
-  const calc = useCallback(
+  console.log('history', history)
+/*  const calc = useCallback(
     (array) => {
       const calcResult = array.map((el, i, arr) => {
         let a = arr[0][1];
@@ -22,18 +23,19 @@ const Charts = ({history, sp, name}) => {
       return result;
     },
     [sp]
-  );
+  );*/
   useEffect(() => {
-    const his = calc(history);
+/*    const his = calc(history);
     const sphi = calcSp(sp);
-    const spa = calc(sphi);
+    const spa = calc(sphi);*/
 
-    const result = sphi.map((el, i) => {
-      return {name: el[0], value: his[i], sp: spa[i]};
+    const result = history.fundHistory.map((el, i) => {
+      return {name: el.period, value: el.value, sp: history.sp500[i]?.value};/*
+      return {name: el.period, value: (el.value * 100).toFixed(1), sp: (history.sp500[i]?.value * 100)?.toFixed(1)};*/
     });
 
     setChartData(result);
-  }, [sp]);
+  }, []);
 
   return (
     <div>
