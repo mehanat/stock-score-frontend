@@ -32,8 +32,8 @@ const BestFunds = ({}) => {
     ratingMax: rating[1],
     totalSumMin: asset[0],
     totalSumMax: asset[1],
-    yearGainMin: perf[0],
-    yearGainMax: perf[1],
+    yearGainMin: perf[0] / 100,
+    yearGainMax: perf[1] / 100,
     top10SharesMin: top[0],
     top10SharesMax: top[1],
     mainSectorId: mainSector,
@@ -56,7 +56,13 @@ const BestFunds = ({}) => {
       .then((res) => {
         const [asset, perf] = res;
         setAssetValue([asset.minValue, asset.maxValue]);
-        setPerfValue(perf);
+        //setPerfValue([perf.minValue * 100, perf.maxValue * 100]);
+        console.log('perf', perf)
+        setPerfValue({
+          statisticsField: perf.statisticsField,
+          minValue: perf.minValue * 100 - 1,
+          maxValue: perf.maxValue * 100 + 1
+        });
       })
       .catch((res) => {
         console.log(res);
