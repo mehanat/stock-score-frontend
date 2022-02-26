@@ -14,6 +14,7 @@ const FundFilters = ({latestReport}) => {
   const dispatch = useDispatch();
   const {id} = useParams();
   const [fund, setFund] = useState({});
+  const [pageSize, setPageSize] = useState(10)
   //const [aboutFund, setAboutFund] = useState({});
   const [security, setSecurity] = useState('');
   const [portfolio, setPortfolio] = useState([]);
@@ -48,7 +49,8 @@ const FundFilters = ({latestReport}) => {
         securityValue[0],
         securityValue[1],
         reportPeriod,
-        page
+        page,
+        pageSize
       )
       .then((res) => {
         console.log('applyFilter', res)
@@ -76,7 +78,6 @@ const FundFilters = ({latestReport}) => {
       .getSecurityValue()
       .then((res) => {
         const [data] = res;
-        console.log(data, 'data');
         setSecurityValueOption(data);
       })
       .catch((res) => {
@@ -122,7 +123,6 @@ const FundFilters = ({latestReport}) => {
   useEffect(() => {
     fetchFund();
   }, [page, sortOrder, sortColumn, reportPeriod]);
-
 
   return (
     <div>
@@ -207,6 +207,7 @@ const FundFilters = ({latestReport}) => {
                 style={{width: '150px'}}
                 placeholder="Choose period"
                 defaultValue={reportPeriod}
+                mode="multiple"
                 onChange={(e) => {
                     console.log('setReportPeriod', e)
                     //setReportPeriod(e)
@@ -238,7 +239,7 @@ const FundFilters = ({latestReport}) => {
         setSortColumn={setSortColumn}
       />
       <div className="footer">
-        <Footer current={page} total={total} setPage={setPage} />
+        <Footer current={page} total={total} setPage={setPage} setPageSize={setPageSize}/>
       </div>
     </div>
   );

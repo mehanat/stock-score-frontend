@@ -10,7 +10,9 @@ const getAboutFund = async (cik) => {
 };
 
 const getFundReport = async (cik, period) => {
-  const {data} = await axios(`${process.env.REACT_APP_API}/funds/${cik}/quartal-report?period=${period}`);
+  const {data} = await axios(
+    `${process.env.REACT_APP_API}/funds/${cik}/quartal-report?period=${period}`
+  );
   return data;
 };
 
@@ -85,21 +87,20 @@ const applyFilter = async (
   valueMin,
   valueMax,
   period,
-  page
+  page,
+  pageSize
 ) => {
   try {
     const {data} = await axios.post(
       `${process.env.REACT_APP_API}/shares?${cik ? `cik=${cik}` : ''}
-      ${
-          orderColumn ? `&${orderColumn}=${sortOrder}` : ''
-      }${cusip ? `&cusip=${cusip}` : ''}${
+      ${orderColumn ? `&${orderColumn}=${sortOrder}` : ''}${cusip ? `&cusip=${cusip}` : ''}${
         percOnPortfolioMin ? `&percOnPortfolioMin=${percOnPortfolioMin}` : ''
       }${percOnPortfolioMax ? `&percOnPortfolioMax=${percOnPortfolioMax}` : ''}${
         valueMin ? `&valueMin=${valueMin}` : ''
       }${valueMax ? `&valueMax=${valueMax}` : ''}${sectorId ? `&sectorId=${sectorId}` : ''}${
         changeType ? `&changeType=${changeType}` : ''
       }${period ? `&period=${period}` : ''}`,
-      {page: page, pageSize: 10}
+      {page: page, pageSize: pageSize}
     );
     return data;
   } catch (error) {

@@ -17,9 +17,11 @@ const BuyPrice = ({title, actualPrice, buyPrice}) => {
   }
   const result = ((actualPrice - buyPrice) / buyPrice).toFixed(3);
   return (
-    <div className={`${color} buyPrice_proc`}>
+    <div className={`buyPrice_proc`}>
+      <span className={color}>
       {sign}
       {countProcent(result)}%
+      </span>
       <img className="arrow" src="/images/right-arrow.png" alt="" width={20} />
     </div>
   );

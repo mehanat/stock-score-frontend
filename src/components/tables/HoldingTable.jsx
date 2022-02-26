@@ -49,7 +49,7 @@ const HoldingTable = ({sortOrder, setSortOrder, sortColumn, setSortColumn}) => {
             </th>
             <th className="action table__header_item">Action</th>
             <th className="buyPrice table__header_item">Buy Price</th>
-            <th className="buyPrice table__header_item"/>
+            <th className="buyPrice__procent table__header_item"/>
             <th className="currPrice table__header_item">Curr.Price</th>
             <th className="sector table__header_item">Sector</th>
           </tr>

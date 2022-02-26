@@ -7,10 +7,8 @@ const HoldingTableCard = ({card}) => {
     <tr className="card__body" key={card.id}>
       <td className="security card__item">
         <div className="securityBox">
-          <div className="securityBox__left">
-            <div className="logo">
-              <img src={card.shares.logo} alt="" style={{width: '30px'}} />
-            </div>
+          <div className="securityBox__left">           
+              <img src={card.shares.logo} alt="" style={{width: '30px'}} />     
           </div>
           <div className="securityBox__right">
             <div className="name">
@@ -30,15 +28,16 @@ const HoldingTableCard = ({card}) => {
         />
       </td>
       <td className="buyPrice card__item">
-          ${card.buyPrice}
+          ${card.buyPrice.toFixed(2)}
 
       </td>
-        <td><BuyPrice
-            className="buyPrice_proc"
+        <td className='buyPrice__procent card__item'>
+          <BuyPrice
             title={card.changeType.title}
             actualPrice={card.shares.actualPrice}
             buyPrice={card.buyPrice}
-        /></td>
+        />
+        </td>
         <td className="currPrice card__item">${card.shares.actualPrice}</td>
         <td className="sector card__item">{card.shares.sector ? card.shares.sector.name : '-'}</td>
     </tr>

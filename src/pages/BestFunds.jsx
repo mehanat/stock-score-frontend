@@ -32,8 +32,8 @@ const BestFunds = ({}) => {
     ratingMax: rating[1],
     totalSumMin: asset[0],
     totalSumMax: asset[1],
-    yearGainMin: perf[0] / 100,
-    yearGainMax: perf[1] / 100,
+    yearGainMin: perf[0],
+    yearGainMax: perf[1],
     top10SharesMin: top[0],
     top10SharesMax: top[1],
     mainSectorId: mainSector,
@@ -55,14 +55,9 @@ const BestFunds = ({}) => {
       .getAssetValue()
       .then((res) => {
         const [asset, perf] = res;
+        
         setAssetValue([asset.minValue, asset.maxValue]);
-        //setPerfValue([perf.minValue * 100, perf.maxValue * 100]);
-        console.log('perf', perf)
-        setPerfValue({
-          statisticsField: perf.statisticsField,
-          minValue: perf.minValue * 100 - 1,
-          maxValue: perf.maxValue * 100 + 1
-        });
+        setPerfValue(perf);
       })
       .catch((res) => {
         console.log(res);
@@ -108,6 +103,7 @@ const BestFunds = ({}) => {
         console.log(res);
       });
   };
+  console.log(perfValue, 'values')
   return (
     <>
       <BestFundSubNavbar />
@@ -175,7 +171,7 @@ const BestFunds = ({}) => {
         </div>
         <div className="filters__item">
           <p>Main sector</p>
-          <Select style={{width: '150px'}} mode="multiple" onChange={(e) => setMainSector(e)}>
+          <Select style={{width: '150px'}} mode="multiple" onChange={(e) => setMainSector(e)} placeholder="Select">
             {sectors &&
               sectors.map((el) => (
                 <>

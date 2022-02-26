@@ -22,7 +22,7 @@
   align-items: center;
 
   .filters__item {
-    width: 134px;
+    // width: 104px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,19 +36,25 @@
   justify-content: flex-end;
 }
 
+.ant-select-selection-overflow {
+  overflow: hidden !important;
+  height: 35px;
+  display: none;
+}
 // TABLE
 
-.buyPrice {
-  position: relative;
-  .buyPrice_proc {
-    width: 80px;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    left: 130px;
-    top: 19px;
+.buyPrice_proc {
+  .green_title {
+    color: #169202;
+  }
+  .red_title {
+    color: #df2121;
+  }
+  span {
+    margin-right: 10px;
   }
 }
+
 .footer {
   width: 100%;
   margin: 20px auto;
